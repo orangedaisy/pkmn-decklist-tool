@@ -133,6 +133,7 @@
 		}
 
 		details[open] > & {
+			border-block-end: .125em solid var(--c-foreground);
 			font-weight: bold;
 		}
 	}
@@ -143,7 +144,9 @@
 		flex-direction: column;
 	}
 
-	input {
+	input:where([type="text"],[type="date"]),
+	select,
+	textarea {
 		background-color: light-dark(white, black);
 		border: .063em solid var(--c-foreground);
 		border-radius: .5rem;
@@ -152,6 +155,12 @@
 		inline-size: 100%;
 		margin-block-start: .5lh;
 		padding: var(--space-2xs);
+	}
+
+	textarea {
+		block-size: 1lh;
+		margin-block-start: 0;
+		resize: none;
 	}
 
 	button {
@@ -180,6 +189,12 @@
 		}
 	}
 
+	hr {
+		background-color: var(--c-foreground);
+		block-size: .063rem;
+		border: 0;
+	}
+
 	:where(ol, ul) {
 		padding-inline-start: 1lh;
 		text-wrap: pretty;
@@ -190,7 +205,6 @@
 		gap: var(--space-xs-s);
 		align-items: baseline;
 		justify-content: center;
-		margin-block: 2lh;
 	}
 
 	.has-flow {
@@ -202,7 +216,7 @@
 			margin-block-start: 1lh;
 		}
 
-		& > :where(h1, h2) + * {
+		& > :where(h2) + * {
 			margin-block-start: .5lh;
 		}
 

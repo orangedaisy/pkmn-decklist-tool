@@ -1,19 +1,36 @@
 console.log('hello world');
 
-const DECKLIST_PREVIEW_CONTAINER = document.getElementById('decklist_preview');
-const DECKLIST_PREVIEW_OUTPUT = DECKLIST_PREVIEW_CONTAINER.querySelector('output');
-const IMPORT_DECKLIST = document.getElementById('import_decklist');
-
+// ==========
+// set some consts and lets
+// ==========
+const DECKLIST_INPUT = document.querySelector('textarea');
 const GENERATE_PDF = document.getElementById('generate_pdf');
 
-IMPORT_DECKLIST.addEventListener('click', () => {
-	navigator.clipboard
-		.readText()
-		.then((clipText) => (DECKLIST_PREVIEW_OUTPUT.innerText = clipText))
-		.then(DECKLIST_PREVIEW_CONTAINER.removeAttribute('hidden'))
-		.then(GENERATE_PDF.removeAttribute('disabled'));
-});
+let decklist = [];
 
-GENERATE_PDF.addEventListener('click', () => {
-	html2pdf(DECKLIST_PREVIEW_OUTPUT);
-});
+// ==========
+// define some functions
+// ==========
+function updateTextareaHeight() {
+	DECKLIST_INPUT.style.blockSize = 'auto';
+	DECKLIST_INPUT.style.blockSize = `${this.scrollHeight +2}px`;
+}
+
+function toggleGeneratePdfButton() {
+	if (DECKLIST_INPUT.value !== '') {
+		GENERATE_PDF.disabled = false;
+	} else {
+		GENERATE_PDF.disabled = true;
+	}
+}
+
+// ==========
+// listen for them events
+// ==========
+DECKLIST_INPUT.addEventListener('input', updateTextareaHeight);
+DECKLIST_INPUT.addEventListener('input', toggleGeneratePdfButton);
+
+// ==========
+// but also do stuff right now omg
+// ==========
+updateTextareaHeight();

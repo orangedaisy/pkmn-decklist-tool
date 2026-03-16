@@ -13,64 +13,19 @@
 	<main class="has-flow">
 		<h1>Pokémon Decklist PDF Tool</h1>
 
+		{% include 'decklist-input.njk' %}
+
+		{% include 'player-information.njk' %}
+
 		<div id="app_controls">
-			<button id="import_decklist" type="button">Import Decklist</button>
 			<button id="generate_pdf" type="button" disabled>Generate PDF</button>
-			<a href="#help">Help &darr;</a>
 		</div>
 
-		<details id="decklist_preview" hidden>
-			<summary>Decklist Preview</summary>
-			<div>
-				<output></output>
-			</div>
-		</details>
+		<hr>
 
-		<details>
-			<summary>Player Information (optional)</summary>
-			<form class="has-flow">
-				<label for="player_name">
-					Player Name
-					<input id="player_name" type="text" name="player_name">
-				</label>
-				<label for="player_id">
-					Player ID
-					<input id="player_id" type="text" name="player_id">
-				</label>
-				<label for="player_birthday">
-					Date of Birth
-					<input id="player_birthday" type="date" name="player_birthday">
-				</label>
-				<p><button id="save_player_info" type="button">Save</button></p>
-				<p><em>Your information will be saved locally to this browser for your
-					convenience. This information is only used to display on the final
-					PDF and is never sent to another browser, device, or third
-				party.</em></p>
-			</form>
-		</details>
+		{% include 'faq.njk' %}
 
-		<div id="help" class="has-flow">
-			<h2>How does this work?</h2>
-			<ol class="has-flow">
-				<li>Click <strong>Import Decklist</strong> to import a Pokémon decklist
-					from your device's clipboard</li>
-				<li>After a successful import, a <em>Decklist Preview</em> will appear
-					for you to verify your list</li>
-				<li>Optionally enter your Play! Pokémon Player Information to add it to
-					the generated PDF</li>
-				<li>Click <strong>Generate PDF</strong> to generate a printable PDF
-					version of your decklist</li>
-			</ol>
-			<h2>Why isn't this working?</h2>
-			<ul class="has-flow">
-				<li>This is a simple tool that makes no calls to a database that can
-					discern what type of card is in your list, so it may need a tiny bit
-					of help. Check the formatting of your decklist. At a minimum, this
-					tool expects your list to be ordered by Pokémon cards first, then
-					Trainer cards, then Energy cards. If your list does not have section
-					headings, a blank line should suffice.</li>
-			</ul>
-		</div>
+		<hr>
 
 		<footer class="has-flow">
 			<p>&copy; <a href="https://www.bshow.co/">Bobby Showalter</a>. This tool
